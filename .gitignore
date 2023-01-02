@@ -1,0 +1,9 @@
+*.log
+*.pot
+*.pyc
+*.DS_Store
+__pycache__/
+env
+.env
+.pytest_cache
+.vscode
