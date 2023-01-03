@@ -1,5 +1,5 @@
-
 from database import SessionLocal
+from fastapi_pagination.ext.sqlalchemy import paginate
 
 from app.models import PuntoAcceso
 
@@ -8,4 +8,4 @@ db = SessionLocal()
 
 def listar():
   """ Obtener usuario por id """
-  return db.query(PuntoAcceso).limit(10).all()
+  return paginate(db.query(PuntoAcceso))
