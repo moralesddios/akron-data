@@ -9,8 +9,8 @@ router = APIRouter()
 service = APServices()
 
 @router.get("/", response_model=Page[PuntoAcesoSchema])
-def lista_paginada():
-  return service.list()
+def lista_paginada(colonia: Optional[str] = None):
+  return service.list(colonia)
 
 @router.get("/detalle", response_model=PuntoAcesoSchema)
 def detalle_por_id(id: str):

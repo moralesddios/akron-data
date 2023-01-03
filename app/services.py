@@ -8,9 +8,13 @@ from app.models import PuntoAcceso
 db = SessionLocal()
 
 class APServices():
-  def list(self):
+  def list(self, colonia: str):
     """ Obtener una lista paginada de puntos de acceso """
-    return paginate(db.query(PuntoAcceso))
+    query = db.query(PuntoAcceso)
+    if colonia:
+      query = query.filter_by(colonia=colonia)
+      return paginate(query)
+    return paginate(query)
 
   def get(self, id: str):
     """ Obtener un punto de acceso por id """
