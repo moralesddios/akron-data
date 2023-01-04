@@ -1,7 +1,7 @@
-from database import SessionLocal
 from fastapi import status
 from fastapi_pagination.ext.sqlalchemy import paginate
 
+from app.database import SessionLocal
 from app.exceptions import MessageException
 from app.models import PuntoAcceso
 from app.utils import haversine

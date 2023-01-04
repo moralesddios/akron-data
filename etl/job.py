@@ -1,15 +1,15 @@
 import logging
 
-from data.extract import extract
-from data.load import load
-from data.transform import transform
+from src.extract import extract
+from src.load import load
+from src.transform import transform
 
 root = logging.getLogger()
 root.setLevel(logging.DEBUG)
 
 #### ----- Extraer ----- ####
 logging.debug('Running Data Extract...')
-df = extract("puntos-de-acceso-wifi.csv")
+df = extract()
 
 #### ----- Transformar ----- ####
 logging.debug('Running Data Transform...')

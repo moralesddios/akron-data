@@ -1,3 +1,5 @@
+import traceback
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi_pagination import add_pagination
@@ -26,9 +28,21 @@ def init_app() -> FastAPI:
 
 app = init_app()
 
+@app.middleware("http")
+async def http_exception_handler(request: Request, call_next):
+  try:
+    return await call_next(request)
+  except Exception as e:
+    traceback.print_exc()
+    exception = getattr(e, 'message', repr(e))
+    return JSONResponse(
+      status_code=500,
+      content={"message": "Algo salió mal", "exception": exception},
+    )
+
 @app.exception_handler(MessageException)
-async def unicorn_exception_handler(request: Request, exc: MessageException):
+async def message_exception_handler(request: Request, exc: MessageException):
   return JSONResponse(
     status_code=exc.code,
-    content={"message": exc.message},
+    content={"message": exc.message, "exception": exc.exception},
   )

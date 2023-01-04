@@ -1,6 +1,6 @@
-from database import Base
 from sqlalchemy import Column, Numeric, String
 
+from app.database import Base
 
 class PuntoAcceso(Base):
   id = Column(String(64), primary_key=True, index=True)
