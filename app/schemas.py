@@ -22,4 +22,4 @@ class PuntoDistancia(BaseModel):
   longitud: condecimal(max_digits=15, decimal_places=9)
   colonia: Optional[str] = None
   alcaldia: Optional[str] = None
-  distancia: condecimal(max_digits=24, decimal_places=18) = Field(default=0)
+  distancia: condecimal(max_digits=12, decimal_places=10) = Field(default=0)
