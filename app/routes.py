@@ -22,6 +22,6 @@ def detalle_por_id(id: str):
 
 @router.get("/nearby", response_model=Page[PuntoDistancia])
 def lista_paginada_orden_cercano(
-    lat: condecimal(max_digits=15, decimal_places=9), long: condecimal(max_digits=15, decimal_places=9)):
+    lat: condecimal(max_digits=15, decimal_places=9), lon: condecimal(max_digits=15, decimal_places=9)):
   """ Distancia aproximada en KM """
-  return service.nearby(lat, long)
+  return service.nearby(lat, lon)

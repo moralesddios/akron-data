@@ -24,9 +24,9 @@ class APServices():
       raise MessageException(status.HTTP_404_NOT_FOUND, "No encontrado")
     return ap
   
-  def nearby(self, lat, long):
+  def nearby(self, lat, lon):
     """ Obtener una lista paginada y ordenada por proximidad a una coordenada dada """
-    distancia = haversine(lat, long, PuntoAcceso.latitud, PuntoAcceso.longitud)
+    distancia = haversine(lat, lon, PuntoAcceso.latitud, PuntoAcceso.longitud)
     query = db.query(
       PuntoAcceso.id,
       PuntoAcceso.programa,
