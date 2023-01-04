@@ -6,8 +6,8 @@ class PuntoAcceso(Base):
   id = Column(String(64), primary_key=True, index=True)
   programa = Column(String(64))
   fecha_instalacion = Column(String(64))
-  latitud =  Column(Numeric(precision=9, scale=6))
-  longitud =  Column(Numeric(precision=9, scale=6))
+  latitud =  Column(Numeric(precision=None))
+  longitud =  Column(Numeric(precision=None))
   colonia = Column(String(64))
   alcaldia = Column(String(64))
 
