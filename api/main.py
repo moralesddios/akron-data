@@ -9,9 +9,9 @@ from app.routes import router as routes
 
 def init_router(app: FastAPI):
   """
-  Initialise the FastAPI router with all existing routers
-  :param app: app to initialise
-  :return: None - Include router of app
+  Inicializar FastAPI app
+  :param app: app a inicializar
+  :return: app inicializada
   """
   app.include_router(routes, prefix='/aps', tags=['aps'])
 

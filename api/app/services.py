@@ -10,7 +10,11 @@ db = SessionLocal()
 
 class APServices():
   def list(self, colonia: str):
-    """ Obtener una lista paginada de puntos de acceso """
+    """
+    Obtener una lista paginada de puntos de acceso
+    :param colonia: colonia
+    :return: lista paginada de puntos de acceso
+    """
     query = db.query(PuntoAcceso)
     if colonia:
       query = query.filter_by(colonia=colonia)
@@ -18,14 +22,24 @@ class APServices():
     return paginate(query)
 
   def get(self, id: str):
-    """ Obtener un punto de acceso por id """
+    """
+    Obtener un punto de acceso por id
+    :param id: punto de acceso id
+    :return: punto de acceso
+    """
     ap = db.query(PuntoAcceso).get(id)
     if not ap:
       raise MessageException(status.HTTP_404_NOT_FOUND, "No encontrado")
     return ap
   
   def nearby(self, lat, lon):
-    """ Obtener una lista paginada y ordenada por proximidad a una coordenada dada """
+    """
+    Obtener una lista paginada y ordenada por proximidad a una coordenada dada
+    :param lat: latitud de la coordenada
+    :param lon: longitud de la coordenada
+    :return: lista paginada
+    """
+    # calcula la distancia aproximada en km por formula haversine
     distancia = haversine(lat, lon, PuntoAcceso.latitud, PuntoAcceso.longitud)
     query = db.query(
       PuntoAcceso.id,

@@ -1,7 +1,8 @@
 import pandas as pd
 
-from .constants import PATH_TO_CSV
-
-def extract():
-  """ Extrae los datos usando pandas """
-  return pd.read_csv(PATH_TO_CSV)
+def extract(path_to_csv: str):
+  """
+  Extrae los datos del csv usando pandas
+  :return: DataFrame
+  """
+  return pd.read_csv(path_to_csv)

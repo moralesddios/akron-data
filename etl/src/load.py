@@ -4,7 +4,12 @@ from sqlalchemy import Numeric
 from .database import connection
 
 def load(df: DataFrame, target: str):
-  """ Carga el Dataframe en PostgreSQL """
+  """
+  Cargar los datos en una tabla de PostgreSQL
+  :param df: DataFrame a cargar
+  :param target: Nombre de la tabla de PostgreSQL
+  :return: None
+  """
   df.to_sql(
     target,
     con=connection(),

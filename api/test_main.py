@@ -30,7 +30,7 @@ def test_detail():
 def test_detail_not_found():
   response = client.get("/aps/detail?id=0")
   assert response.status_code == 404
-  assert response.json() == {"message": "No encontrado"}
+  assert response.json() == {"message": "No encontrado", "exception": None}
 
 def test_nearby():
   response = client.get("/aps/nearby?lat=19.53974&lon=-99.14251")
