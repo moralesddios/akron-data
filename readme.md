@@ -88,7 +88,7 @@ postgres=\# create database akron;
 Build docker image.
 
 ```sh
-$ docker build --no-cache --build-arg -t akron-etl ./etl
+$ docker build --no-cache -t akron-etl ./etl
 ```
 
 Run docker container.
@@ -118,4 +118,16 @@ $ docker run -d
   --net=akron
   --env DATABASE_URL=postgresql://postgres:secret@postgres/akron
   akron-api
+```
+
+Run all with docker-compose.
+
+```sh
+$ docker-compose up --build --force-recreate --no-deps -d
+```
+
+Stop all with docker-compose.
+
+```sh
+$ docker-compose down --volumes
 ```

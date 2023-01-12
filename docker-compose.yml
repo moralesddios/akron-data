@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  etl:
+    depends_on:
+      - db
+    build: ./etl
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python job.py'
+    environment:
+      - DATABASE_URL=postgresql://postgres:secret@db/akron
+    networks:
+      - akron
+  api:
+    depends_on:
+      - etl
+    build: ./api
+    ports:
+      - "8080:80"
+    environment:
+      - DATABASE_URL=postgresql://postgres:secret@db/akron
+    networks:
+      - akron
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - akron
+
+volumes:
+  db:
+
+networks:
+  akron:
