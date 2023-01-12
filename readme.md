@@ -120,13 +120,13 @@ $ docker run -d
   arkon-api
 ```
 
-Run all with docker-compose.
+## Run all with docker-compose.
 
 ```sh
 $ docker-compose up --build --force-recreate --no-deps -d
 ```
 
-Stop all with docker-compose.
+Stop docker-compose.
 
 ```sh
 $ docker-compose down --volumes
