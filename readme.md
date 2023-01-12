@@ -1,4 +1,4 @@
-# Akron Data - Pipeline Puntos de acceso WiFi CDMX
+# Arkon Data - Pipeline Puntos de acceso WiFi CDMX
 
 requirements:
 
@@ -67,7 +67,7 @@ $ docker run -d
   -p 5432:5432
   -e POSTGRES_PASSWORD=secret
   -v postgres:/var/lib/postgresql/data
-  --net=akron
+  --net=arkon
   postgres:14
 ```
 
@@ -80,7 +80,7 @@ $ psql -h localhost -U postgres
 Create database.
 
 ```sh
-postgres=\# create database akron;
+postgres=\# create database arkon;
 ```
 
 ## Run ETL with Docker
@@ -88,17 +88,17 @@ postgres=\# create database akron;
 Build docker image.
 
 ```sh
-$ docker build --no-cache -t akron-etl ./etl
+$ docker build --no-cache -t arkon-etl ./etl
 ```
 
 Run docker container.
 
 ```sh
 $ docker run -d
-  --name akron-etl
-  --net=akron
-  --env DATABASE_URL=postgresql://postgres:secret@postgres/akron
-  akron-etl
+  --name arkon-etl
+  --net=arkon
+  --env DATABASE_URL=postgresql://postgres:secret@postgres/arkon
+  arkon-etl
 ```
 
 ## Run API with Docker
@@ -106,18 +106,18 @@ $ docker run -d
 Build docker image.
 
 ```sh
-$ docker build --no-cache -t akron-api ./api
+$ docker build --no-cache -t arkon-api ./api
 ```
 
 Run docker container.
 
 ```sh
 $ docker run -d
-  --name akron-api
+  --name arkon-api
   -p 8080:80
-  --net=akron
-  --env DATABASE_URL=postgresql://postgres:secret@postgres/akron
-  akron-api
+  --net=arkon
+  --env DATABASE_URL=postgresql://postgres:secret@postgres/arkon
+  arkon-api
 ```
 
 Run all with docker-compose.

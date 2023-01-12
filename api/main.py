@@ -17,7 +17,7 @@ def init_router(app: FastAPI):
 
 def init_app() -> FastAPI:
   _app = FastAPI(
-    title="Akron REST API",
+    title="Arkon REST API",
     description="Servicios REST - Puntos de acceso Wi-Fi CDMX",
     version="1.0.0"
   )

@@ -7,9 +7,9 @@ services:
     build: ./etl
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python job.py'
     environment:
-      - DATABASE_URL=postgresql://postgres:secret@db/akron
+      - DATABASE_URL=postgresql://postgres:secret@db/arkon
     networks:
-      - akron
+      - arkon
   api:
     depends_on:
       - etl
@@ -17,9 +17,9 @@ services:
     ports:
       - "8080:80"
     environment:
-      - DATABASE_URL=postgresql://postgres:secret@db/akron
+      - DATABASE_URL=postgresql://postgres:secret@db/arkon
     networks:
-      - akron
+      - arkon
   db:
     image: postgres:14
     environment:
@@ -31,10 +31,10 @@ services:
       - db:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - akron
+      - arkon
 
 volumes:
   db:
 
 networks:
-  akron:
+  arkon:

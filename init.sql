@@ -1,1 +1,1 @@
-CREATE DATABASE akron;
+CREATE DATABASE arkon;
